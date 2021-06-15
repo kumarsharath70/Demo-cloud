@@ -1,0 +1,47 @@
+<header>
+  <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>
+    <div class="container">
+      <a class="navbar-brand">E-Procurement</a>
+      <div style="float:right;">
+         Welcome to {{loggedIn}}
+         <span style ="opacity: 0.5; padding-right: 5px;">|</span>
+         <a style="color: #0366d6;cursor: pointer !important;" (click)="signOut()">Sign Out</a>
+      </div>
+    </div>
+    </nav>
+ </header> 
+<div class="container" style="font-size: 14px;">
+    <h1 class="row purchaseHeader">Purchase List </h1>
+  <div class="row" style="float: right;">
+    <button type="submit" class='submit' (click)="ExportToExcel()"> Export To Excel </button>
+  </div>
+
+  <div class="row" style="margin-top: 70px;">
+    <table  id="Table1" class='table table-striped' aria-labelledby="tableLabel">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Date</th>
+          <th>Planner Name</th>
+          <th>Order Nr</th>
+          <th>Supplier Name</th>
+          <th>Location</th>
+          <th>Email</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.action}}</td>
+          <td>  <a style="color: #0366d6;cursor: pointer !important;" (click)="navigate(order)">{{ order.date }}</a></td>
+          <td>{{ order.plannerName }}</td>
+          <td>{{ order.orderNo }}</td>
+          <td>{{ order.supplierName }}</td>
+          <td>{{ order.location }}</td>
+          <td>{{ order.email }}</td>
+          <td><input type="checkbox" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,216 @@
+<header>
+  <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>
+    <div class="container">
+      <a class="navbar-brand">E-Procurement</a>
+      <div style="float:right;">
+         Welcome to {{loggedIn}}
+         <span style ="opacity: 0.5; padding-right: 5px;">|</span>
+         <a style="color: #0366d6;cursor: pointer !important;" (click)="signOut()">Sign Out</a>
+      </div>
+    </div>
+    </nav>
+ </header>
+
+<div class="container" style="font-size:14px">
+
+<h1 class="row purchaseHeader">Purchase Order Details</h1>
+  <div class="row backPage">
+    <a href="/fetch-purchase">Return to List</a>
+  </div>
+<div > 
+
+</div>
+  <div class="row purchase-date mb-2">
+      <label>Purchase Order Date :</label>
+       <span style="font-weight: bold; margin-left: 5px;">{{poDetails?.dateOrder}}</span>
+      <label style="margin-left:200px">Status : </label>
+        <span style="font-weight: bold; margin-left: 5px;">{{approveStatus}}</span>
+  </div>
+
+  <div class ="row mb-2 description">Description</div>
+     <div class="row mb-2 mp-2 mt-2">
+        <div class="col-md-6">
+          <label style="font-weight: 500;font-size: 13px;">Delivery Address : </label><br/>
+          <span>{{poDescription.companyName}} </span><br/>
+          <span>{{poDescription.address}} </span><br/>
+          <span>{{poDescription.address2}} </span><br/>
+          <span >{{poDescription.city1}} </span><br/>
+          <span >{{poDescription.city2}} </span>
+      </div>
+      <div class="col-md-3">
+            <label style="font-weight: 500;font-size: 13px;">Warehouse</label><br/>
+            <span>{{poDescription?.CodeStore}} </span>
+            <span>VEN </span>
+      </div>
+      <div class="col-md-3">
+            <label style="font-weight: 500;font-size: 13px;">Supplier Address : </label><br/>
+            <span>{{poSupplier.companyName}} </span><br/>
+          <span>{{poSupplier.address}} </span><br/>
+          <span>{{poSupplier.address2}} </span><br/>
+          <span >{{poSupplier.city1}} </span><br/>
+          <span >{{poSupplier.city2}} </span>
+      </div>
+    </div>
+
+  <div class="row" style="margin-bottom: 30px;">
+      {{poMessage[0].message}}{{poMessage[1]?.message}}
+  </div>
+
+  <div class="row mb-2 mt-2">
+      <table  id="Table11" class='table table-striped'style="margin-left: 10px;" aria-labelledby="tableLabel">
+          <thead>
+              <tr>
+                <th>Notre ordre</th>
+                <th>A l'attention de</th>
+                <th>Acheteur</th>
+              </tr>
+            </thead>
+              <tbody >
+                  <tr>
+                      <td>{{poDetails.ourOrder}}</td>
+                      <td>{{poDetails.attention}}</td>
+                      <td>{{poDetails.buyer}}</td>
+                    </tr>
+              </tbody>
+          
+        </table>
+  </div>
+
+<div class ="row mb-2 description" style="font-weight: bold;font-size: 14px;">Part Details</div>
+  <div class="row mb-2">
+      <table  id="Table1" class='table table-striped' style="margin-left: 10px;" aria-labelledby="tableLabel">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Quantité</th>
+              <th>Un</th>
+              <th>Code Article Contrat</th>
+              <th>Description
+                  Cde.art.fournisseur</th>
+              <th>Remise</th>
+              <th>Prix</th>
+              <th>Unité</th>
+              <th>IND</th>
+              <th>Corresp.</th>
+              <th>Montant</th>
+              <th>Dte lv.pl
+                  Magasin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{poParts.orderLineNumber}}</td>
+              <td>{{poParts.quantity}}</td>
+              <td>{{poParts.cte}}</td>
+              <td>{{poParts.codeArticle}} {{poParts.contract}}</td>
+              <td>{{poParts.description}} {{poParts.supplierPartCode}}</td>
+              <td>{{poParts.discount}}</td>
+              <td>{{poParts.unitPrice}}</td>
+              <td>{{poParts.unit}}</td>
+              <td>{{poParts.iND}}</td>
+              <td>{{poParts.transicoldContact}}</td>
+              <td>{{poParts.totalPrice}}</td>
+              <td>{{poParts.plannedDeliveryDate}} {{poParts.store}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+
+  <div class ="row mb-2 description" style="font-weight: bold;font-size: 14px;">Total</div>
+  <div class="row mb-2">
+      <table  id="Table2" class='table table-striped'style="margin-left: 10px;" aria-labelledby="tableLabel">
+          <thead>
+            <tr>
+              <th>Marchandises</th>
+              <th>TVA ,000</th>
+              <th>Total EUR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{poTotal.goods}}</td>
+              <td>{{poTotal.tVA}}</td>
+              <td>{{poTotal.totalEUR}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  
+  <div class ="row mb-2 description" style="font-weight: bold;font-size: 14px;">Conditions</div>
+  <div class="row mb-2">
+      <table  id="Table3" class='table table-striped' style="margin-left: 10px;" aria-labelledby="tableLabel">
+          <thead>
+            <tr>
+              <th>Livrais</th>
+              <th>Ville</th>
+              <th>Règlmt</th>
+              <th>Méthode de règlement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{poCondition.delivery}}</td>
+              <td>{{poCondition.city}}</td>
+              <td>{{poCondition.settlement}}</td>
+              <td>{{poCondition.MethodOfSettlement}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+
+  <div class ="row mb-2 description" style="font-weight: bold;font-size: 14px;">Comments</div>
+  <div class ="row mb-2" style="margin-left: 10px;">{{poComments?.description}}</div>
+
+  <div class ="row mb-2 description" style="font-weight: bold;font-size: 14px;">Messages</div>
+  <div class ="row mb-2" style="margin-left: 10px;"> 
+    <div *ngIf = "poMessages" class="row mb-2 mt-2">
+        <table  id="Table11" class='table table-striped'style="margin-left: 10px;" aria-labelledby="tableLabel">
+            <thead>
+                <tr>
+                  <th>From</th>
+                  <th>Date</th>
+                  <th>Subject</th>
+                </tr>
+              </thead>
+                <tbody >
+                    <tr>
+                        <td>{{poMessages.from}}</td>
+                        <td>{{poMessages.date}}</td>
+                        <td>{{poMessages.message}}</td>
+                      </tr>
+                </tbody>
+            
+          </table>
+    </div>
+  </div>
+   <div class="row">
+     <div>
+        <button type="button" class="btn btn-primary" (click)=openModal()>
+            Add Message
+          </button>
+     </div>
+     
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div style="float: right;"> <span (click)="close()" class="close">&times;</span></div>
+            <h5>New Message</h5>
+            <input #userMessage style="height: 70px; width: 470px;" id="userMessage" type="userMessage" placeholder="Enter Message"
+            >
+            <div style="margin:10px;padding: 10px;">
+                <button  type="button" (click)="addMessage(userMessage)" class="btn btn-success">Validate</button>
+                <button  type="button"(click)="close()"  class="btn btn-light">Close</button>
+            </div>
+            
+          </div>
+        
+        </div>
+        
+   </div> 
+
+
+
+</div>
+
+
+
